@@ -49,12 +49,40 @@ input{
     padding: 10px 20px;
 }
 
-#todolist{
-font-size: 21px;
-align-self: self-start;
+.context{
+    display: flex;
+    gap:15px;
 }
 
-#todolist p{
+#todolist{
+    display: flex;
+    flex-direction: column;
+    gap:5px;
+}
+
+
+
+.todolistchild{
+    display: flex;
+    gap: 150px;
+    font-size: 19px;
+    font-weight: bold;
+    justify-content: space-between;
+}
+
+
+.todolistchild button{
+    padding: 5px 8px;
+    background-color: black;
+    color:white;
+    cursor: pointer;
+}
+
+.todolistchild p{
     cursor: pointer;
     padding-bottom: 5px;
+}
+
+.todolistchild p:checked{
+    color: red;
 }
