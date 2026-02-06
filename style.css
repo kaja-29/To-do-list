@@ -57,25 +57,34 @@ input{
 #todolist{
     display: flex;
     flex-direction: column;
-    gap:5px;
+    gap: 10px;
+    justify-content: space-between;
+    width: 100%;
 }
 
 
 
 .todolistchild{
     display: flex;
+    flex-direction: row;
     gap: 150px;
     font-size: 19px;
     font-weight: bold;
-    justify-content: space-between;
+    justify-content: space-around;
+}
+
+.todolistchild2{
+    display: flex;
+    gap:10px;
 }
 
 
-.todolistchild button{
-    padding: 5px 8px;
+.todolistchild2 button{
+    padding: 4px 6px;
     background-color: black;
     color:white;
     cursor: pointer;
+    
 }
 
 .todolistchild p{

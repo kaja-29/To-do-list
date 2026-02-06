@@ -1,11 +1,12 @@
 const input = document.getElementById("input");
 const addbtn = document.getElementById("addbtn");
 const todocontent = document.getElementById("todolist");
-const todocontentchild = document.getElementById("todolistchild");
-const del = document.getElementById("del");
 
 let todos = [];
-
+window.onload = () =>{
+    todos = JSON.parse(localStorage.getItem("tasks")) || [];
+todos.forEach(togo=>add(togo));
+}
 
 
 addbtn.addEventListener("click",()=>{
@@ -14,10 +15,10 @@ addbtn.addEventListener("click",()=>{
         alert("Pls enter your Task");
         return;
     }
+    
     todos.push(value);
     add(value);
     input.value = "";
-    console.log(todos);
 })
 
 function add(togo){
@@ -27,19 +28,45 @@ function add(togo){
     const para = document.createElement("p");
     para.innerText = togo;
 
+    const rows2 = document.createElement("div");
+    rows2.className = "todolistchild2";
+
+    const editbtn = document.createElement("button");
+    editbtn.innerHTML = "Edit";
+
     const delbtn = document.createElement("button");
     delbtn.innerText = "Delete-task";
 
+    localStorage.setItem("tasks",JSON.stringify(todos));
+
     todocontent.appendChild(rows);
     rows.appendChild(para);
-    rows.appendChild(delbtn);
-    
+    rows.appendChild(rows2);
+    rows2.appendChild(editbtn);
+    rows2.appendChild(delbtn);
+  
+    editbtn.addEventListener("click",()=>{
+    const newText = prompt("Edit Your Task",para.innerText);
+
+    if(newText === null || newText.trim() === ''){
+        return;
+    }
+
+    const index = todos.indexOf(para.innerText);
+    if(index >-1){
+        todos[index] = newText.trim();
+    }
+    para.innerText = newText.trim();
+    localStorage.setItem("tasks",JSON.stringify(todos));
+})
+
     para.addEventListener("click",()=>{
         para.style.textDecoration = "line-through";
     })
 
     delbtn.addEventListener("click",()=>{
         todocontent.removeChild(rows);
+        rows.removeChild(rows2);
         remove(togo);
     })
 }
@@ -47,8 +74,10 @@ function add(togo){
 function remove(togo){
     const index = todos.indexOf(togo);
         if(index>-1){
-            todos.splice(index,1);        
+            todos.splice(index,1);
+                 
     }
+    localStorage.setItem("tasks",JSON.stringify(todos));
 }
 
 
