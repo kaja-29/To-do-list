@@ -35,7 +35,7 @@ function add(togo){
     editbtn.innerHTML = "Edit";
 
     const delbtn = document.createElement("button");
-    delbtn.innerText = "Delete-task";
+    delbtn.innerText = "Clear";
 
     localStorage.setItem("tasks",JSON.stringify(todos));
 
@@ -62,6 +62,7 @@ function add(togo){
 
     para.addEventListener("click",()=>{
         para.style.textDecoration = "line-through";
+        para.style.color = "gray";
     })
 
     delbtn.addEventListener("click",()=>{
