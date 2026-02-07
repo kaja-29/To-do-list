@@ -25,6 +25,12 @@ function add(togo){
     const rows = document.createElement("div");
     rows.className = "todolistchild";
 
+    const rod = document.createElement("div");
+    rod.className = "todoli";
+
+    const check = document.createElement("input");
+    check.type = "checkbox";
+
     const para = document.createElement("p");
     para.innerText = togo;
 
@@ -40,7 +46,9 @@ function add(togo){
     localStorage.setItem("tasks",JSON.stringify(todos));
 
     todocontent.appendChild(rows);
-    rows.appendChild(para);
+    rows.appendChild(rod);
+    rod.appendChild(check);
+    rod.appendChild(para);
     rows.appendChild(rows2);
     rows2.appendChild(editbtn);
     rows2.appendChild(delbtn);
@@ -60,15 +68,21 @@ function add(togo){
     localStorage.setItem("tasks",JSON.stringify(todos));
 })
 
-    para.addEventListener("click",()=>{
-        para.style.textDecoration = "line-through";
-        para.style.color = "gray";
+    check.addEventListener("change",()=>{
+        if(check.checked){
+            para.style.textDecoration = "line-through";
+            para.style.color = "gray";
+        }
+        else{
+            para.style.textDecoration = "none";
+            para.style.color = "white";
+        }
     })
 
-    delbtn.addEventListener("click",()=>{
+     delbtn.addEventListener("click",()=>{
         todocontent.removeChild(rows);
         rows.removeChild(rows2);
-        remove(togo);
+        remove(para.innerText);
     })
 }
 
