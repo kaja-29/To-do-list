@@ -16,7 +16,7 @@ body{
     justify-content: center;
     height: 100vh;
     background-color: rgb(41, 0, 94);
-    overflow-x: hidden;
+    overflow-y: hidden;
 }
 
 .btn{
