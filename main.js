@@ -61,6 +61,7 @@ function add(togo){
     }
 
     const index = todos.indexOf(para.innerText);
+    
     if(index >-1){
         todos[index] = newText.trim();
     }
@@ -80,9 +81,12 @@ function add(togo){
     })
 
      delbtn.addEventListener("click",()=>{
-        todocontent.removeChild(rows);
-        rows.removeChild(rows2);
-        remove(para.innerText);
+        if(confirm("Did you Really done your task ?")){
+            todocontent.removeChild(rows);
+            rows.removeChild(rows2);
+            remove(para.innerText);
+        }
+        
     })
 }
 
